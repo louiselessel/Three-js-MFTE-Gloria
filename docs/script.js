@@ -1,5 +1,4 @@
 // Code by Louise Lessél, www.louiselessel.com
-// For Candystations, www.candystations.com
 // Image sampling voronoi for Gloria, Mass For The Endangered, by Sarah Kirkland Snider www.sarahkirklandsnider.com
 // Based on this shader: https://www.shadertoy.com/view/WltfzB
 // Voronoi based on original shader https://www.shadertoy.com/view/4sK3WK by stb
@@ -208,7 +207,8 @@ uniform vec3 sColor;
 // hit R to remove clear buffer and remove all voronoi, then resample by drawing with mouse.
 
 #define t2D(o) texture2D(iChannel0, uv-(o/res))
-#define plane(p, n) 1. - abs(dot(p, n))*res.y
+//#define plane(p, n) 1. - abs(dot(p, n))*res.y
+#define plane(p, n) smoothstep(0.0, 1.5/res.y, 1. - abs(dot(p, n))*res.y)
 #define dataAt(x,y) texture2D(iChannel0, vec2(x+.5, y+.5)/res)
 //#define dataAt(x,y) texture2D(iChannel0, vec2(x, y)/res)
 //#define t2D(o) texture2D( iChannel0, (0.5+o) / res, -0.0 )
